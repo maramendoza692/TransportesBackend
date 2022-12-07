@@ -23,31 +23,34 @@ public class Paquetes implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 4117255755389547138L;
+	private static final long serialVersionUID = 2741064044806830105L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id_viaje")
-	private Integer id_viaje;
+	@Column(name="id_paq")
+	private Integer id_paq;
 	
-	@Column(name="hora")
-	private String hora;
+	@Column(name="descripcion")
+	private String descripcion;
 	
-	@Column(name="fecha")
-	private Date fecha;
+	@Column(name="servicio_1")
+	private String servicio_1;
 	
-	@Column(name="total")
-	private Double total;
+	@Column(name="servicio_2")
+	private String servicio_2;
+	
+	@Column(name="servicio_3")
+	private String servicio_3;
+	
+	@Column(name="servicio_4")
+	private String servicio_4;
+	
+	@Column(name="precio")
+	private Double precio;
 	
 	@ManyToOne
-	@JoinColumn(name="id_origen")
-	private Origen id_origen;
+	@JoinColumn(name="id_transp")
+	private Transporte id_transp;
 	
-	@ManyToOne
-	@JoinColumn(name="id_destino")
-	private Destino id_destino;
 	
-	@ManyToOne
-	@JoinColumn(name="id_paq")
-	private Paquetes id_paq;
 }
