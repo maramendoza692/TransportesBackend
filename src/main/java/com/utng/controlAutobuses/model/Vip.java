@@ -12,42 +12,47 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
+@Setter
 @Entity
-@Table(name= "CATALOGO_DESTINO")
-public class Destino implements Serializable {
+@Table(name= "PAQUETE_VIP")
+public class Vip implements Serializable {
+	
 	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6628959417022438579L;
-
+	private static final long serialVersionUID = 2343697348850740610L;
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id_destino")
-	private Integer id_destino;
-
-	@Column(name="nombre_destino")
-	private String nombre_destino;
+	@Column(name="id_vip")
+	private Integer id_vip;
 	
-	@Column(name="precio_destino")
-	private String precio_destino;
+	@Column(name="descripcion")
+	private String descripcion;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id_origen")
-	private Origen origen;
+	@Column(name="servicio1")
+	private String  servicio1;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id_horario")
-	private Horario horario;
+	@Column(name="servicio2")
+	private String servicio2;
+	
+	@Column(name="servicio3")
+	private String servicio3;
+	
+	@Column(name="servicio4")
+	private String servicio4;
+	
+	@Column(name="precio_vip")
+	private Double precio_vip;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="id_transporte")
-	private Transporte tranporte;
+	private Transporte transporte;
 
 }

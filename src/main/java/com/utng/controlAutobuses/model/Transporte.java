@@ -12,22 +12,31 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
 @Setter
+@Getter
 @Entity
-@Table(name= "CATALOGO_ORIGEN")
-public class Origen implements Serializable{
+@Table(name= "CATALOGO_TRANSPORTE")
+public class Transporte implements Serializable  {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 906802343873069983L;
-
+	private static final long serialVersionUID = -223876133697096164L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id_origen")
-	private Integer id_origen;
+	@Column(name="id_transp")
+	private Integer id_transp;
 	
-	@Column(name="nombre_origen")
-	private String nombre;
+	
+	@Column(name="nombre")
+	private Integer nombre_transporte;
+	
+	@Column(name="precio_transp")
+	private Integer precio_transporte;
+	
+	
+	
+
+
 }
