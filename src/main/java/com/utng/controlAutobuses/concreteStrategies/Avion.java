@@ -45,7 +45,7 @@ public class Avion implements ITransporteStrategy {
 	}
 
 	@Override
-	public Response<Transporte> mostrarPaquetes() {
+	public Response<Transporte> mostrarPaquetes(Transporte transporte) {
 		Response<Transporte> response = new Response<Transporte>();
 
 		List<Transporte> lista = transporteRepository.mostrarPaquetes();

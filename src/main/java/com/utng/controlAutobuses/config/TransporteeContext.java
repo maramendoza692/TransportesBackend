@@ -1,4 +1,4 @@
-package com.utng.controlAutobuses.concreteStrategies;
+package com.utng.controlAutobuses.config;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.utng.controlAutobuses.concreteStrategies.TipoTransporte;
 import com.utng.controlAutobuses.dao.DestinoRepository;
 import com.utng.controlAutobuses.dao.OrigenRepository;
 import com.utng.controlAutobuses.dao.PaquetesRepository;
@@ -18,13 +19,13 @@ import com.utng.controlAutobuses.model.Response;
 import com.utng.controlAutobuses.model.ResumenViaje;
 import com.utng.controlAutobuses.model.ResumenViajeRequest;
 import com.utng.controlAutobuses.model.Transporte;
-import com.utng.controlAutobuses.service.ITransporteStrategy;
 
 @Service
-public class Uber implements ITransporteStrategy {
+public class TransporteeContext implements IService {
    
+
 	@Autowired
-	private TransporteRepository transporteRepository;
+	private TransporteeRepository transporteeRepository;
 	
 	@Autowired
 	private ResumenViajeRepository resumenViajeRepository;
@@ -37,17 +38,12 @@ public class Uber implements ITransporteStrategy {
 	
 	@Autowired
 	private PaquetesRepository paquetesRepository;
-	
-	@Override
-	public TipoTransporte getType() {
-		return TipoTransporte.UBER;
-	}
 
 	@Override
-	public Response<Transporte> mostrarPaquetes(Transporte transporte) {
-		Response<Transporte> response = new Response<Transporte>();
+	public Response<Paquetes> mostrarPaquetes(Integer id_transp) {
+		Response<Paquetes> response = new Response<Paquetes>();
 
-		List<Transporte> lista = transporteRepository.mostrarPaquetes();
+		List<Paquetes> lista = transporteeRepository.mostrarPaquetes(id_transp);
 		
 		if(lista.isEmpty()) {
 			response.setMessage("No hay resultados");
@@ -61,7 +57,7 @@ public class Uber implements ITransporteStrategy {
 		
 		return response;
 	}
-
+	
 	@Override
 	public Response<ResumenViaje> confirmarViaje(ResumenViajeRequest viaje) {
 		
@@ -118,5 +114,14 @@ public class Uber implements ITransporteStrategy {
 		
 	}
 
+	@Override
+	public TipoTransporte getType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
 	
 }
+

@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import com.utng.controlAutobuses.concreteStrategies.TipoTransporte;
 import com.utng.controlAutobuses.model.Response;
+import com.utng.controlAutobuses.model.ResumenViaje;
+import com.utng.controlAutobuses.model.ResumenViajeRequest;
 import com.utng.controlAutobuses.model.Transporte;
 
 @Service
@@ -19,6 +21,8 @@ public class TransporteContext implements InitializingBean{
 	 @Autowired
 	    private List<ITransporteStrategy> transporteStrategies;
 	    private Map<TipoTransporte,ITransporteStrategy> map;
+	    private ResumenViajeRequest viaje;
+	    private Transporte transporte;
 	    
 	    public TransporteContext(List<ITransporteStrategy> transporteStrategies) {
 	    	this.transporteStrategies = transporteStrategies;
@@ -32,9 +36,13 @@ public class TransporteContext implements InitializingBean{
 
 	    public Response<Transporte> mostrarPaquetes(TipoTransporte tipoTransporte){
 	    	this.map = new HashMap<>();
-	    	return this.map.get(tipoTransporte).mostrarPaquetes();
+	    	return this.map.get(tipoTransporte).mostrarPaquetes(transporte);
 	    }
 	    
+	    public Response<ResumenViaje> confirmarViaje(ResumenViajeRequest viaje){
+	    	this.map = new HashMap<>();
+	    	return this.map.get(viaje).confirmarViaje(viaje);
+	    }
 	    
 }
 		
