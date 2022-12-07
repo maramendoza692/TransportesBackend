@@ -1,99 +1,46 @@
 package com.utng.controlAutobuses.concreteStrategies;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import com.utng.controlAutobuses.dao.TransporteRepository;
 import com.utng.controlAutobuses.model.Destino;
 import com.utng.controlAutobuses.model.Response;
+import com.utng.controlAutobuses.model.Transporte;
 import com.utng.controlAutobuses.service.ITransporteStrategy;
 
 @Service
 public class Avion implements ITransporteStrategy {
    
-
+	@Autowired
+	private TransporteRepository transporteRepository;
+	
 	@Override
 	public TipoTransporte getType() {
 		return TipoTransporte.AVION;
 	}
 
 	@Override
-	public String getRuta() {
-		// TODO Auto-generated method stub
-		return "Avioooon";
+	public Response<Transporte> mostrarPaquetes() {
+		Response<Transporte> response = new Response<Transporte>();
+
+		List<Transporte> lista = transporteRepository.mostrarPaquetes();
+		
+		if(lista.isEmpty()) {
+			response.setMessage("No hay resultados");
+			
+		}else {
+			response.setMessage("Consulta correcta");
+		}
+		response.setStatus("OK");
+		response.setList(lista);
+		response.setCount(lista.size());
+		
+		return response;
 	}
-
-	@Override
-	public String agregarDestino() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String seleccionarPaquete() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String calcularTotal() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String resumenViaje() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String pagar() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String notificar() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-
-	/*@Override
-	public Response<Autobus> getRuta(String ruta) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Response<Autobus> getDestino(String destino) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Response<Autobus> getOrigen(String origen) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Response<Autobus> getHora(String hora) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Response<Autobus> enviarMensaje() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	public Response<Autobus> asd(){
-		return null;
-	}*/
-
 	
 }
 

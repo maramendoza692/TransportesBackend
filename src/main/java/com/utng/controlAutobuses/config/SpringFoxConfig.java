@@ -17,17 +17,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 @Configuration
 public class SpringFoxConfig implements WebMvcConfigurer {                                    
    
-	/*@Bean
-    public Docket api() { 
-        return new Docket(DocumentationType.SWAGGER_2)  
-          .select()                                  
-          .apis(RequestHandlerSelectors.any())              
-          .paths(PathSelectors.any())                          
-          .build();                                           
-    }*/
-    
-    
-    @Override
+	@Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
         registry
@@ -37,8 +27,6 @@ public class SpringFoxConfig implements WebMvcConfigurer {
         registry
                 .addResourceHandler("/webjars/**")
                 .addResourceLocations("classpath:/META-INF/resources/webjars/");
-        registry.addResourceHandler("/**");
-        
     }
 
     @Bean
@@ -47,7 +35,7 @@ public class SpringFoxConfig implements WebMvcConfigurer {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(getApiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.utng.controlescolar.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.utng.controlAutobuses.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
@@ -59,7 +47,6 @@ public class SpringFoxConfig implements WebMvcConfigurer {
                 .description("More description about the API")
                 .version("1.0.0")
                 .build();
-    }    
-
+    }
 }
 

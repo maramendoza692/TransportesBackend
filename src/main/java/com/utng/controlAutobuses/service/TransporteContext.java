@@ -7,10 +7,13 @@ import java.util.Map;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.utng.controlAutobuses.concreteStrategies.TipoTransporte;
+import com.utng.controlAutobuses.model.Response;
+import com.utng.controlAutobuses.model.Transporte;
 
-@Component
+@Service
 public class TransporteContext implements InitializingBean{
 		 
 	 @Autowired
@@ -27,28 +30,10 @@ public class TransporteContext implements InitializingBean{
 	    	transporteStrategies.forEach(autobusStrategies -> map.put(autobusStrategies.getType(), autobusStrategies));
 	    }
 
-
-	    public String getRuta(TipoTransporte tipoPaquete) {
-	    	
-	    	return this.map.get(tipoPaquete).getRuta();
+	    public Response<Transporte> mostrarPaquetes(TipoTransporte tipoTransporte){
+	    	this.map = new HashMap<>();
+	    	return this.map.get(tipoTransporte).mostrarPaquetes();
 	    }
 	    
-	    /*
-	    public Response<Autobus> getRuta(TipoAutobus tipoAutobus) {
-	        return this.map.get(tipoAutobus).getRuta("ruta");
-	    }
-	    
-	    public Response<Autobus> getDestino(TipoAutobus tipoAutobus) {
-	        return this.map.get(tipoAutobus).getDestino(null);
-	    }
-	    
-	    public Response<Autobus> getOrigen(TipoAutobus tipoAutobus) {
-	        return this.map.get(tipoAutobus).getOrigen(null);
-	    }
-	    
-	    public Response<Autobus> getHora(TipoAutobus tipoAutobus) {
-	        return this.map.get(tipoAutobus).getHora(null);
-	    }*/
-
 }
 		
