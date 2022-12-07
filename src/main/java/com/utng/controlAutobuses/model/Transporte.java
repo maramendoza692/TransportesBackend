@@ -30,10 +30,10 @@ public class Transporte implements Serializable  {
 	
 	
 	@Column(name="nombre")
-	private Integer nombre_transporte;
+	private Integer nombre;
 	
 	@Column(name="precio_transp")
-	private Integer precio_transporte;
+	private Integer precio;
 	
 	
 	

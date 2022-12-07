@@ -4,17 +4,14 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 
 import lombok.Getter;
 import lombok.Setter;
+
 
 @Setter
 @Getter
@@ -35,19 +32,8 @@ public class Destino implements Serializable {
 	@Column(name="nombre_destino")
 	private String nombre_destino;
 	
-	@Column(name="precio_destino")
-	private String precio_destino;
+	@Column(name="precio")
+	private String precio;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id_origen")
-	private Origen origen;
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id_horario")
-	private Horario horario;
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id_transporte")
-	private Transporte tranporte;
 
 }
