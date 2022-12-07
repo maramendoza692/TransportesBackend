@@ -33,7 +33,7 @@ public class Destino implements Serializable {
 	private String nombre_destino;
 	
 	@Column(name="precio")
-	private String precio;
+	private Double precio;
 	
 
 }
